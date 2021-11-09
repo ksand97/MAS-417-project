@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.core.fromnumeric import shape
 from stl import mesh
 
 y1=3
@@ -14,8 +15,10 @@ y10=4
 y11=6
 y12=5
 
+stockname='Tesla'
+year='2020'
 
-vertices = np.array([
+points = np.array([
     [0,0,0], #0
     [0,y1,0], #1
     [1,y2,0], #2
@@ -69,7 +72,7 @@ vertices = np.array([
     
 ])
 
-faces = np.array([
+triangles = np.array([
     [0,2,1],
     [0,23,2],
     [23,3,2],
@@ -149,11 +152,11 @@ faces = np.array([
 
 ])
 
-shape = mesh.Mesh(np.zeros(faces.shape[0], dtype=mesh.Mesh.dtype))
+shape = mesh.Mesh(np.zeros(triangles.shape[0], dtype=mesh.Mesh.dtype))
 
-for i, f in enumerate(faces):
+for i, f in enumerate(triangles):
     for j in range(3):
-        shape.vectors[i][j] = vertices[f[j], :]
+        shape.vectors[i][j] = points[f[j], :]
 
 
-shape.save("stock2.stl")
+shape.save(stockname+year+".stl")
