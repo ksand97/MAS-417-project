@@ -1,6 +1,8 @@
 import numpy as np
 from numpy.core.fromnumeric import shape
 from stl import mesh
+from matplotlib import pyplot
+from mpl_toolkits import mplot3d
 
 y1=3
 y2=2
@@ -158,5 +160,11 @@ for i, f in enumerate(triangles):
     for j in range(3):
         shape.vectors[i][j] = points[f[j], :]
 
+
+# Create a new plot
+figure = pyplot.figure()
+axes = mplot3d.Axes3D(figure)
+
+pyplot.show()
 
 shape.save(stockname+year+".stl")
