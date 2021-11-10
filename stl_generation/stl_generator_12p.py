@@ -17,6 +17,7 @@ def stl_generator(y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12,):
     #y12=5
 
 
+
     vertices = np.array([
         [0,0,0], #0
         [0,y1,0], #1
