@@ -51,4 +51,4 @@ axes.add_collection3d(mplot3d.art3d.Poly3DCollection(cube.vectors))
 pyplot.show()
 
 # Write the mesh to file "cube.stl"
-cube.save('cube.stl')
+cube.save('STL_files/cube2.stl')
