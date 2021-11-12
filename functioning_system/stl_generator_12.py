@@ -7,8 +7,7 @@ def stl_generator(y, stockname):
 
     f = max(y)
     k = 12/f
-    print(k)
-    
+
     y1=k*y[0]
     y2=k*y[1]
     y3=k*y[2]
