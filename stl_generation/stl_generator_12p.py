@@ -1,8 +1,5 @@
 import numpy as np
-from numpy.core.fromnumeric import shape
 from stl import mesh
-from matplotlib import pyplot
-from mpl_toolkits import mplot3d
 
 y1=3
 y2=2
@@ -17,10 +14,8 @@ y10=4
 y11=6
 y12=5
 
-stockname='Tesla'
-year='2020'
 
-points = np.array([
+vertices = np.array([
     [0,0,0], #0
     [0,y1,0], #1
     [1,y2,0], #2
@@ -74,7 +69,7 @@ points = np.array([
     
 ])
 
-triangles = np.array([
+faces = np.array([
     [0,2,1],
     [0,23,2],
     [23,3,2],
@@ -154,16 +149,11 @@ triangles = np.array([
 
 ])
 
-shape = mesh.Mesh(np.zeros(triangles.shape[0], dtype=mesh.Mesh.dtype))
+shape = mesh.Mesh(np.zeros(faces.shape[0], dtype=mesh.Mesh.dtype))
 
-for i, f in enumerate(triangles):
+for i, f in enumerate(faces):
     for j in range(3):
-        shape.vectors[i][j] = points[f[j], :]
+        shape.vectors[i][j] = vertices[f[j], :]
 
 
-# Create a new plot
-figure = pyplot.figure()
-axes = mplot3d.Axes3D(figure)
-
-
-shape.save(stockname+year+".stl")
+shape.save("stock2.stl")

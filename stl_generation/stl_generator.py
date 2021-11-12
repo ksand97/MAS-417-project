@@ -110,4 +110,4 @@ for i, f in enumerate(faces):
         shape.vectors[i][j] = vertices[f[j], :]
 
 
-shape.save("STL_files/stock.stl")
+shape.save("stock.stl")

@@ -63,4 +63,4 @@ axes.auto_scale_xyz(scale, scale, scale)
 # Show the plot to the screen
 pyplot.show()
 
-cube.save('STL_files/cube.stl')
+cube.save('cube.stl')
