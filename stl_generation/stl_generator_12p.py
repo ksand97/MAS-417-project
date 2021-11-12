@@ -165,6 +165,5 @@ for i, f in enumerate(triangles):
 figure = pyplot.figure()
 axes = mplot3d.Axes3D(figure)
 
-pyplot.show()
 
 shape.save(stockname+year+".stl")
