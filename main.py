@@ -1,8 +1,21 @@
 from stl_generation import stl_generator_12p
+#import choosing_period
 import request_api
 
+#Q = input()
 
+#if Q == ("yes"):
+#y = request_api.Y
+#    return(y)
+
+#elif Q == ("No"):
 y=request_api.Y
+#    y = choosing_period.Y
+#    return(y)
+#else :
+#    print("Try One more time")
+
+# y = choosing_period.hei
 
 # index 0??
 y1=10e-3*y[0]
