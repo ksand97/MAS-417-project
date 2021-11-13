@@ -1,10 +1,9 @@
 import stl_generator_12
-import api_info
+import api_fetch
 
 
-y=api_info.Y
-stockname='TSLA'
-
+y=api_fetch.Y
+stockname=api_fetch.nameofstock
 
 
 if __name__ == "__main__":
