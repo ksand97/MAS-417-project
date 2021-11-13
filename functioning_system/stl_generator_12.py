@@ -1,13 +1,12 @@
 import numpy as np
 from stl import mesh
 
-year='2020'
 
 def stl_generator(y, stockname):
 
     f = max(y)
     k = 12/f
-    print(k)
+    
     
     y1=k*y[0]
     y2=k*y[1]
@@ -167,4 +166,6 @@ def stl_generator(y, stockname):
 
 
 
-    shape.save(stockname+year+".stl")
+    shape.save(stockname+".stl")
+
+    print("Success! Your STL was generated. \nIt can be found as "+stockname+".stl" )
