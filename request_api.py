@@ -6,47 +6,55 @@ import numpy as np
 import matplotlib.pyplot as plt
 import statistics as st
 
+
+class UserInput:
+    def __init__(self, year_in, month_in, day_in):
+        self.year_in = year_in
+        self.month_in = month_in
+        self.day_in = day_in
+
+def choose():
+    print("Welcome! \nHere you can generate STL-files, displaying the movement of common stock prices within a given month or year!")
+    print("Choose stock (ex. TSLA, AAPL):")
+    stock = input()
+    print("What period do you want? Enter: y for yearly, m for monthly")
+    question_period = input()
     
-
-def year():
+    if question_period == ("y"):
+        print("You have chosen year")
+        Y = year(stock)
+        #print(Y)
+        return (Y, stock)
+        
+    elif question_period == ("m"):
+        print("You have chosen month")
+        Y = month(stock)
+        #print(Y)
+        return (Y, stock)
     
-    # Setter inn ønskene paramtere
-    ticker = input("Shortname:" )
-    #ticker = 'TSLA'
+    else :
+        print("Insert wrong")
+        return
 
-    print("Which year? 20XX?: ")
-    year = int(input())
-    #myFunction(year)
-    print("From which month in number?:" )
-    month = int(input())
-    #print("Day: ")
-    #day = input()
-    #print("Hour: ")
-    #hour = input()
-    #print("Minutes: ")
-    #minutes = input()
+def year(ticker):
+    print("Choose year (in number)? ")
+    input1 = int(input())
+    print("Form which month (in number)? ")
+    input2 = int(input())
+    
+    request = UserInput(input1, input2, 1)
+ 
+    period1 = int(time.mktime(datetime.datetime(request.year_in, request.month_in, 1, 1, 1).timetuple()))
 
-    #period1 = int(time.mktime(datetime.datetime(2020, 11, 1, 23, 59).timetuple()))
-    period1 = int(time.mktime(datetime.datetime(year, month, 1, 1, 1).timetuple()))
-
-    #print("Year end: ")
     year_added = int(1)
-    year_end = year + year_added
-    #print("Mounth end:" )
+    year_end = request.year_in + year_added
+  
     month_added = int(1)
-    month_end = month + month_added
-    #print("Day end: ")
-    #day_end = input()
-    #print("Hour end: ")
-    #hour_end = input()
-    #print("Minutes end: ")
-    #minutes_end = input()
-    period2 = int(time.mktime(datetime.datetime(year_end, month_end, 1, 1, 1).timetuple()))
-    #period2 = int(time.mktime(datetime.datetime(2021, 11, 1, 23, 59).timetuple()))
-    #period2 = int(time.mktime(dateToday.timetuple()) #If Yes, set todays date
-    #interval = input("Enter 1mo, 1d or 1m: ")
-    interval = '1mo' # 1d, 1m
+    month_end = request.month_in + month_added
 
+    period2 = int(time.mktime(datetime.datetime(year_end, month_end, 1, 1, 1).timetuple()))
+
+    interval = '1mo' # 1d, 1m
 
     query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
 
@@ -56,76 +64,54 @@ def year():
     df_close_as_np = df['Close'].to_numpy()
     df_as_np = df.to_numpy()
     
-    #print(df_as_np)
-    print((len(df_as_np)))
-    #x = np.arange(0, len(df_as_np))
-    #plt.plot(x, df_close_as_np)
-    #plt.show()
+    x = np.arange(0, len(df_as_np))
+    
+    plt.plot(x, df_close_as_np)
+    
+    plt.savefig(ticker)
+
     Y = df_close_as_np
-    #print(Y)
+ 
     return(Y)
+
+def month(ticker):
     
-
-def month():
+    print("Choose year (in number)? ")
+    input1 = int(input())
+    print("Form which month (in number)? ")
+    input2 = int(input())
+    print("From which day (in number)? ")
+    input3 = int(input())
     
-    # Setter inn ønskene paramtere
-    ticker = input("Shortname:" )
-    #ticker = 'TSLA'
+    request = UserInput(input1, input2, input3)
 
-    print("Which year 20XX?: ")
-    year = int(input())
-    #myFunction(year)
-    print("From which month in number?:" )
-    month = int(input())
-    print("From which day in number?: ")
-    day = int(input())
-    #print("Hour: ")
-    #hour = input()
-    #print("Minutes: ")
-    #minutes = input()
+    period1 = int(time.mktime(datetime.datetime(request.year_in, request.month_in, request.day_in, 1, 1).timetuple()))
 
-    #period1 = int(time.mktime(datetime.datetime(2020, 11, 1, 23, 59).timetuple()))
-    period1 = int(time.mktime(datetime.datetime(year, month, day, 1, 1).timetuple()))
-
-    #print("Year end: ")
-    #year_added = int(1)
-    year_end = year #+ year_added
-    #print("Mounth end:" )
+    year_end = request.year_in
+    
     month_added = int(1)
-    month_end = month + month_added
-    #print("Day end: ")
-    #day_added = int(1)
-    day_end = day
-    #print("Hour end: ")
-    #hour_end = input()
-    #print("Minutes end: ")
-    #minutes_end = input()
+    month_end = request.month_in + month_added
+    
+    day_end = request.day_in
+    
     period2 = int(time.mktime(datetime.datetime(year_end, month_end, day_end, 1, 1).timetuple()))
-    #period2 = int(time.mktime(datetime.datetime(2021, 11, 1, 23, 59).timetuple()))
-    #period2 = int(time.mktime(dateToday.timetuple()) #If Yes, set todays date
-    #interval = input("Enter 1mo, 1d or 1m: ")
+    
     interval = '1d' # 1d, 1m
-    #interval = '1mo' # 1d, 1m, 1wk, 1h. With 1m, 5m, 15m, 30m or 90m. 1h. 1d or 5d. 1wk. 1mo or 3mo.
+    
 
     query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
 
 
     df = pd.read_csv (query_string, usecols=['Date', 'Close'])
-    #print(df)
     df_close_as_np = df['Close'].to_numpy()
     df_as_np = df.to_numpy()
-    #print(df_as_np)
-    #print((len(df_as_np)))
+    print(df)
     x = np.arange(0, len(df_as_np))
-    #print(x)
-    #plt.plot(x, df_close_as_np)
-    #plt.show()
-    
     Y_x = df_close_as_np
-    #print(Y_x)
+    
     
     Y0 = Y_x[0]
-    Y1 = st.mean([Y_x[0], Y_x[1]]) #Finding the averge
+    Y1 = st.mean([Y_x[0], Y_x[1]])
     Y2 = st.mean([Y_x[2], Y_x[3]])
     Y3 = st.mean([Y_x[4], Y_x[4]])
     Y4 = st.mean([Y_x[5], Y_x[6]])
@@ -139,52 +125,14 @@ def month():
     
     Y = [Y0, Y1, Y2, Y3, Y4, Y5, Y6, Y7, Y8, Y9, Y10, Y11]
     x_Y = np.arange(0, len(Y))
-    #print(x_Y)
-    #print(Y)
+    x = np.arange(0, len(df_as_np))
+    
+    plt.plot(x_Y, Y)
+    plt.savefig(ticker)
     
     return(Y)
 
-def choose():
 
-    print("Which periode are you looking for? \n" "Enter: year or month in letters")
-    question_period = input()
-    
-    #Should be set in a while loop, if insertwrong only goen through ones
-    if question_period == ("year"):
-        print("You have choosed year")
-        Y = year()
-        print(Y)
-        return (Y)
-        #Go go to function with input for year
-    elif question_period == ("month"):
-        print("You have choosed month")
-        Y = month()
-        print(Y)
-        return (Y)
-    #Go to function with input for year and mounth. Limits for day and so on.
-    else :
-        print("Insert wrong")
-        return
-    
-
-
-#if __name__ == "__main__":
-Y = choose()
-    
-    #year(df_as_numpy)
-#Y = choose()
-
-
-print (Y)
-#return function for start 
-
-#Sett opp en if, ikke 12 punkter, start på nytt og print "Ugylding XX for akje". 
-# "(len(df_as_np)"
-
-#Y = month()
-#print(Y)
-print("Finnished")
-
-
-#Y = year()
-#Y = month()
+result = choose()
+Y = result[0]
+nameofstock = result[1]
