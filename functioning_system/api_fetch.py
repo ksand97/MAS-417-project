@@ -55,7 +55,7 @@ def year(ticker):
 
 
     df = pd.read_csv (query_string, usecols=['Date', 'Close'])
-    #print(df)
+    print(df)
     df_close_as_np = df['Close'].to_numpy()
     df_as_np = df.to_numpy()
     
