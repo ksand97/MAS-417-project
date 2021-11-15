@@ -8,16 +8,10 @@ import statistics as st
 
 
 class UserInput:
-    def __init__(self, year_in, month_in):
+    def __init__(self, year_in, month_in, day_in):
         self.year_in = year_in
         self.month_in = month_in
-    
-    #def choosing(self):
-    #    print("You have selected year: " + self.year_in)
-    #    print("You have selected from month: " + self.month_in)
-
-#request_year.choosing()
-#request_month.choosing()
+        self.day_in = day_in
 
 def choose():
     print("Welcome! \nHere you can generate STL-files, displaying the movement of common stock prices within a given month or year!")
@@ -42,12 +36,13 @@ def choose():
         print("Insert wrong")
         return
 
-
-
 def year(ticker):
-    print("Which year and month?: ")
-    request = UserInput(int(input()), int(input()))
-    #request_year = UserInput( ,int(input())
+    print("Choose year (in number)? ")
+    input1 = int(input())
+    print("Form which month (in number)? ")
+    input2 = int(input())
+    
+    request = UserInput(input1, input2, 1)
  
     period1 = int(time.mktime(datetime.datetime(request.year_in, request.month_in, 1, 1, 1).timetuple()))
 
@@ -61,16 +56,19 @@ def year(ticker):
 
     interval = '1mo' # 1d, 1m
 
-
     query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
 
 
     df = pd.read_csv (query_string, usecols=['Date', 'Close'])
-    #print(df)
+    print(df)
     df_close_as_np = df['Close'].to_numpy()
     df_as_np = df.to_numpy()
     
-    #print((len(df_as_np)))
+    x = np.arange(0, len(df_as_np))
+    
+    plt.plot(x, df_close_as_np)
+    
+    plt.savefig(ticker)
 
     Y = df_close_as_np
  
@@ -78,20 +76,23 @@ def year(ticker):
 
 def month(ticker):
     
-    print("Which year and month?: ")
-    request = UserInput(int(input()), int(input()))
+    print("Choose year (in number)? ")
+    input1 = int(input())
+    print("Form which month (in number)? ")
+    input2 = int(input())
+    print("From which day (in number)? ")
+    input3 = int(input())
+    
+    request = UserInput(input1, input2, input3)
 
-    print("From which day? (in number):")
-    day = int(input())
+    period1 = int(time.mktime(datetime.datetime(request.year_in, request.month_in, request.day_in, 1, 1).timetuple()))
 
-    period1 = int(time.mktime(datetime.datetime(request.year_in, request.month_in, day, 1, 1).timetuple()))
-
-    year_end = request.year_in #+ year_added
+    year_end = request.year_in
     
     month_added = int(1)
     month_end = request.month_in + month_added
     
-    day_end = day
+    day_end = request.day_in
     
     period2 = int(time.mktime(datetime.datetime(year_end, month_end, day_end, 1, 1).timetuple()))
     
@@ -102,18 +103,15 @@ def month(ticker):
 
 
     df = pd.read_csv (query_string, usecols=['Date', 'Close'])
-    
     df_close_as_np = df['Close'].to_numpy()
     df_as_np = df.to_numpy()
-    
+    print(df)
     x = np.arange(0, len(df_as_np))
-    
-    
     Y_x = df_close_as_np
     
     
     Y0 = Y_x[0]
-    Y1 = st.mean([Y_x[0], Y_x[1]]) #Finding the averge
+    Y1 = st.mean([Y_x[0], Y_x[1]])
     Y2 = st.mean([Y_x[2], Y_x[3]])
     Y3 = st.mean([Y_x[4], Y_x[4]])
     Y4 = st.mean([Y_x[5], Y_x[6]])
@@ -127,6 +125,10 @@ def month(ticker):
     
     Y = [Y0, Y1, Y2, Y3, Y4, Y5, Y6, Y7, Y8, Y9, Y10, Y11]
     x_Y = np.arange(0, len(Y))
+    x = np.arange(0, len(df_as_np))
+    
+    plt.plot(x_Y, Y)
+    plt.savefig(ticker)
     
     return(Y)
 
@@ -134,6 +136,3 @@ def month(ticker):
 result = choose()
 Y = result[0]
 nameofstock = result[1]
-
-print(result)
-print(nameofstock)
