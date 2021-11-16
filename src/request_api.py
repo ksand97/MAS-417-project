@@ -37,9 +37,9 @@ def choose():
         return
 
 def year(ticker):
-    print("Choose year (in number)? ")
+    print("Choose year (20XX): ")
     input1 = int(input())
-    print("Form which month (in number)? ")
+    print("From which month (in number)? ")
     input2 = int(input())
     
     request = UserInput(input1, input2, 1)
@@ -76,9 +76,9 @@ def year(ticker):
 
 def month(ticker):
     
-    print("Choose year (in number)? ")
+    print("Choose year (20XX): ")
     input1 = int(input())
-    print("Form which month (in number)? ")
+    print("From which month (in number)? ")
     input2 = int(input())
     print("From which day (in number)? ")
     input3 = int(input())
@@ -113,14 +113,14 @@ def month(ticker):
     Y0 = Y_x[0]
     Y1 = st.mean([Y_x[0], Y_x[1]])
     Y2 = st.mean([Y_x[2], Y_x[3]])
-    Y3 = st.mean([Y_x[4], Y_x[4]])
-    Y4 = st.mean([Y_x[5], Y_x[6]])
-    Y5 = st.mean([Y_x[7], Y_x[8]])
-    Y6 = st.mean([Y_x[9], Y_x[10]])
-    Y7 = st.mean([Y_x[11], Y_x[12]])
-    Y8 = st.mean([Y_x[13], Y_x[14]])
-    Y9 = st.mean([Y_x[15], Y_x[16]])
-    Y10 = st.mean([Y_x[17], Y_x[18]])
+    Y3 = st.mean([Y_x[4], Y_x[5]])
+    Y4 = st.mean([Y_x[6], Y_x[7]])
+    Y5 = st.mean([Y_x[8], Y_x[9]])
+    Y6 = st.mean([Y_x[10], Y_x[11]])
+    Y7 = st.mean([Y_x[12], Y_x[13]])
+    Y8 = st.mean([Y_x[14], Y_x[15]])
+    Y9 = st.mean([Y_x[16], Y_x[17]])
+    Y10 = st.mean([Y_x[18], Y_x[19]])
     Y11 = Y_x[18]
     
     Y = [Y0, Y1, Y2, Y3, Y4, Y5, Y6, Y7, Y8, Y9, Y10, Y11]

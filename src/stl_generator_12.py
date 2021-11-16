@@ -168,4 +168,4 @@ def stl_generator(y, stockname):
 
     shape.save(stockname+".stl")
 
-    print("Success! Your STL was generated. \nIt can be found as "+stockname+".stl" )
+    print("Success! Your STL and plot image was generated. \nThey can be found as "+stockname+".stl and "+stockname+".png in the current workspace")
