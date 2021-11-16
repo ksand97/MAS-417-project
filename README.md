@@ -3,21 +3,17 @@
 
 Installation intruction: Windows
 
-Go in to workspace
+Go in to workspace in terminal
+- cd <DIRECTORY>
 
-gitclone https://github.com/ksand97/MAS-417-project.git
+- gitclone https://github.com/ksand97/MAS-417-project.git
 
-Run main.py
-
-Installation instruction: Ubuntu 20.04
-
-cd <workspace>
-cd src
-gitclone https://github.com/ksand97/MAS-417-project.git
-cd ..
-colcon build
+  - pip install -r requirements.txt
   
-run main.py
-  
-  
+  - python3 main.py
+
+
+
+
+
 
