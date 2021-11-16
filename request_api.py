@@ -1,11 +1,9 @@
 import time
 import datetime
-from numpy.lib.function_base import average
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import statistics as st
-
 
 class UserInput:
     def __init__(self, year_in, month_in, day_in):
@@ -106,9 +104,7 @@ def month(ticker):
 
     df = pd.read_csv (query_string, usecols=['Date', 'Close'])
     df_close_as_np = df['Close'].to_numpy()
-    df_as_np = df.to_numpy()
     print(df)
-    x = np.arange(0, len(df_as_np))
     Y_x = df_close_as_np
     
     
@@ -127,7 +123,6 @@ def month(ticker):
     
     Y = [Y0, Y1, Y2, Y3, Y4, Y5, Y6, Y7, Y8, Y9, Y10, Y11]
     x_Y = np.arange(0, len(Y))
-    x = np.arange(0, len(df_as_np))
     
     plt.plot(x_Y, Y)
     plt.savefig(ticker)
