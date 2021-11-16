@@ -1,9 +1,9 @@
 import stl_generator_12
-import api_fetch
+import request_api
 
 
-y=api_fetch.Y
-stockname=api_fetch.nameofstock
+y=request_api.Y
+stockname=request_api.nameofstock
 
 
 if __name__ == "__main__":
