@@ -1,7 +1,7 @@
 # MAS-417-project
 
 
-Installation intruction: Windows
+Installation intruction:
 
 Go in to workspace in terminal
 - cd <DIRECTORY>
