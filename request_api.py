@@ -14,29 +14,31 @@ class UserInput:
         self.day_in = day_in
 
 def choose():
+    
     print("Welcome! \nHere you can generate STL-files, displaying the movement of common stock prices within a given month or year!")
-    print("Choose stock (ex. TSLA, AAPL):")
-    stock = input()
-    print("What period do you want? Enter: y for yearly, m for monthly")
-    question_period = input()
-    
-    if question_period == ("y"):
-        print("You have chosen year")
-        Y = year(stock)
-        #print(Y)
-        return (Y, stock)
+    Y = ""
+    while Y == "":
+               
+        print("Choose stock (ex. TSLA, AAPL):")
+        stock = input()
+        print("What period do you want? Enter: y for yearly, m for monthly")
+        question_period = input()
         
-    elif question_period == ("m"):
-        print("You have chosen month")
-        Y = month(stock)
-        #print(Y)
-        return (Y, stock)
+        if question_period == ("y"):
+            print("You have chosen year")
+            Y = year(stock)
+            return (Y, stock)
+            
+        elif question_period == ("m"):
+            print("You have chosen month")
+            Y = month(stock)
+            return (Y, stock)
+        
+        else :
+            print("Insert wrong")
     
-    else :
-        print("Insert wrong")
-        return
-
 def year(ticker):
+    
     print("Choose year (in number)? ")
     input1 = int(input())
     print("Form which month (in number)? ")
@@ -54,7 +56,7 @@ def year(ticker):
 
     period2 = int(time.mktime(datetime.datetime(year_end, month_end, 1, 1, 1).timetuple()))
 
-    interval = '1mo' # 1d, 1m
+    interval = '1mo'
 
     query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
 
@@ -96,7 +98,7 @@ def month(ticker):
     
     period2 = int(time.mktime(datetime.datetime(year_end, month_end, day_end, 1, 1).timetuple()))
     
-    interval = '1d' # 1d, 1m
+    interval = '1d'
     
 
     query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
